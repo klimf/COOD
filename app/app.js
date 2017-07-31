@@ -16,6 +16,7 @@ import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { useScroll } from 'react-router-scroll';
 import 'sanitize.css/sanitize.css';
+// import 'file?name=[name].[ext]!./img/og-image.png';
 
 // Import root app
 import App from 'containers/App';
@@ -30,7 +31,16 @@ import LanguageProvider from 'containers/LanguageProvider';
 /* eslint-disable import/no-unresolved, import/extensions */
 import '!file-loader?name=[name].[ext]!./favicon.ico';
 import '!file-loader?name=[name].[ext]!./manifest.json';
+import 'file-loader?name=[name].[ext]!./browserconfig.xml';
 import 'file-loader?name=[name].[ext]!./.htaccess';
+import 'file-loader?name=[name].[ext]!./android-chrome-192x192.png';
+import 'file-loader?name=[name].[ext]!./android-chrome-512x512.png';
+import 'file-loader?name=[name].[ext]!./apple-touch-icon.png';
+import 'file-loader?name=[name].[ext]!./favicon-16x16.png';
+import 'file-loader?name=[name].[ext]!./favicon-32x32.png';
+import 'file-loader?name=[name].[ext]!./mstile-150x150.png';
+import 'file-loader?name=[name].[ext]!./safari-pinned-tab.svg';
+import 'file-loader?name=[name].[ext]!./img/og-image.jpg';
 /* eslint-enable import/no-unresolved, import/extensions */
 
 import configureStore from './store';
