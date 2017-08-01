@@ -12,6 +12,18 @@
  */
 
 import React from 'react';
+import Helmet from 'react-helmet';
+import styled from 'styled-components';
+
+import Header from 'components/Header';
+import Footer from 'components/Footer';
+
+import { palette } from '../../utils/constants';
+
+const AppWrapper = styled.div`
+  min-height: 100%;
+  background-color: ${palette.white}
+`;
 
 export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -21,9 +33,22 @@ export default class App extends React.PureComponent { // eslint-disable-line re
 
   render() {
     return (
-      <div>
+      <AppWrapper>
+        <Helmet
+          titleTemplate="%s - COOD"
+          defaultTitle="COOD - студия, делаем сайты и мобильные приложения"
+          meta={[
+            {
+              name: 'description',
+              content: 'Делаем крутые сайты, приложения и эффективную рекламу. Помогаем Вашему бизнесу становиться еще успешнее.',
+            },
+          ]}
+        />
+        {/* add dark */}
+        <Header />
         {React.Children.toArray(this.props.children)}
-      </div>
+        <Footer />
+      </AppWrapper>
     );
   }
 }
