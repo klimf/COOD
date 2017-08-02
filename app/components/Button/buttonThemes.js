@@ -1,4 +1,4 @@
-import { palette, unit } from '../../utils/constants';
+import { palette } from '../../utils/constants';
 
 const buttonThemes = {
   black: {

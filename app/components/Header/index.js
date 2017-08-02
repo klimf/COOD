@@ -19,6 +19,7 @@ import MenuIcon from './MenuIcon';
 
 import Logo from '../Logo';
 import Button from '../Button';
+import HideOn from '../HideOn';
 
 const dark = {
   color: palette.white,
@@ -34,13 +35,17 @@ class Header extends React.PureComponent { // eslint-disable-line react/prefer-s
       <ThemeProvider theme={this.props.dark ? dark : light}>
         <Wrapper>
           <Link to="/"><Logo /></Link>
-          <NavList>
+          <NavList noSmall>
             {messages.navigation.map((item, index) => (
               <NavItem key={index} to={messages.navigation[index].link}><FormattedMessage {...messages.navigation[index]} /></NavItem>
             ))}
           </NavList>
-          <Button type="black">Сделать заказ</Button>
-          <MenuIcon />
+          <HideOn small>
+            <Button type="black" to="/"><FormattedMessage {...messages.button} /></Button>
+          </HideOn>
+          <HideOn medium large>
+            <MenuIcon />
+          </HideOn>
         </Wrapper>
       </ThemeProvider>
     );

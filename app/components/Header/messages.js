@@ -27,4 +27,8 @@ export default defineMessages({
       link: '/blog',
     },
   ],
+  button: {
+    id: 'app.components.Header.Button',
+    defaultMessage: 'Make an order',
+  },
 });

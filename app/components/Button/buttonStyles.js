@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import { palette, unit } from '../../utils/constants';
+import { unit } from '../../utils/constants';
 
 const defaultStyle = css`
   min-width: 150px;
@@ -17,6 +17,7 @@ const defaultStyle = css`
   cursor: pointer;
   outline: 0;
   font-size: ${1 * unit}px;
+  font-weight: 500;
   border: 3px solid ${(props) => props.theme.borderColor};
   background-color: ${(props) => props.theme.bgColor};
   color: ${(props) => props.theme.textColor};
@@ -31,17 +32,17 @@ const defaultStyle = css`
   }
 `;
 
-defaultStyle.defaultProps = {
-  theme: {
-    bgColor: palette.transparent,
-    borderColor: palette.black,
-    textColor: palette.black,
-    shadow: 'none',
-    bgColorHover: palette.black,
-    textColorHover: palette.white,
-    borderColorHover: palette.black,
-    shadowHover: 'none',
-  },
-};
+// defaultStyle.defaultProps = {
+//   theme: {
+//     bgColor: palette.transparent,
+//     borderColor: palette.black,
+//     textColor: palette.black,
+//     shadow: 'none',
+//     bgColorHover: palette.black,
+//     textColorHover: palette.white,
+//     borderColorHover: palette.black,
+//     shadowHover: 'none',
+//   },
+// };
 
 export default defaultStyle;

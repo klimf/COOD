@@ -21,6 +21,20 @@ export const media = {
       ${css(...args)}
     }`,
 };
+
+
+export const hideOn = css`
+  ${media.small`
+     ${(props) => props.noSmall && 'display: none'};
+  `}
+  ${media.medium`
+     ${(props) => props.noMedium && 'display: none'};
+  `}
+  ${media.large`
+     ${(props) => props.noLarge && 'display: none'};
+  `}
+`;
+
 // // iterate through the sizes and create a media template
 // export const media = Object.keys(sizes).reduce((accumulator, label) => {
 //   // use em in breakpoints to work properly cross-browser and support users

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import { media } from '../../utils/style-utils';
+
+import { hideOn } from '../../utils/style-utils';
+
 
 const NavList = styled.div`
   display: flex;
@@ -10,10 +12,8 @@ const NavList = styled.div`
   width: 100%;
   max-width: 400px;
   height: 36px;
-  
-  ${media.small`
-    display: none;
-  `}
+  ${hideOn}
 `;
+
 
 export default NavList;

@@ -9,14 +9,19 @@
 import React, { PropTypes, Children } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
-import Wrapper from './Wrapper';
 import buttonStyles from './buttonStyles';
 import buttonThemes from './buttonThemes';
 
-const A = styled.a`${buttonStyles}`;
-const StyledButton = styled.button`${buttonStyles}`;
+import { hideOn } from '../../utils/style-utils';
 
 function Button(props) {
+  const A = styled.a`${buttonStyles}`;
+  const StyledButton = styled.button`${buttonStyles}`;
+
+  const Wrapper = styled.div`
+    text-align: center;
+  `;
+
   // Render an anchor tag
   let button = (
     <A href={props.href} onClick={props.onClick}>
@@ -33,11 +38,11 @@ function Button(props) {
     );
   }
   return (
-    <ThemeProvider theme={props.type ? buttonThemes[props.type] : buttonThemes.primary} >
-      <Wrapper>
+    <Wrapper>
+      <ThemeProvider theme={props.type ? buttonThemes[props.type] : buttonThemes.primary} >
         {button}
-      </Wrapper>
-    </ThemeProvider>
+      </ThemeProvider>
+    </Wrapper>
   );
 }
 
@@ -49,4 +54,4 @@ Button.propTypes = {
   type: PropTypes.string,
 };
 
-export default Button;
+export default styled(Button)`${hideOn}`;
