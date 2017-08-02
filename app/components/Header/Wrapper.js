@@ -3,8 +3,7 @@ import { media } from '../../utils/style-utils';
 import { unit, palette } from '../../utils/constants';
 
 const Wrapper = styled.div`
-  color: ${(props) => props.theme.color};
-  background-color: ${palette.secondary};
+  background-color: ${(props) => props.dark ? palette.accent : palette.transparent};
   z-index: 100;
   position: relative;
   display: flex;
@@ -12,6 +11,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   padding: ${2.5 * unit}px ${unit / 3}%;
   margin-bottom: -${0 * unit}px;
+  transition: 0.3s ease;
   ${media.small}
 `;
 

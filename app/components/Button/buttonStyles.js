@@ -22,12 +22,12 @@ const defaultStyle = css`
   background-color: ${(props) => props.theme.bgColor};
   color: ${(props) => props.theme.textColor};
   box-shadow: ${(props) => props.theme.shadow};
-  transition: 0.3s ease
+  transition: 0.3s ease;
 
   &:hover {
     background-color: ${(props) => props.theme.bgColorHover};
     color: ${(props) => props.theme.textColorHover};
-    border: ${(props) => props.theme.borderWidth}px solid ${(props) => props.theme.borderColorHover};
+    border: 3px solid ${(props) => props.theme.borderColorHover};
     box-shadow: ${(props) => props.theme.shadowHover};
   }
 `;

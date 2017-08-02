@@ -11,7 +11,7 @@
  * the linting exception.
  */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
 
@@ -28,8 +28,32 @@ const AppWrapper = styled.div`
 export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   static propTypes = {
-    children: React.PropTypes.node,
+    children: PropTypes.node,
+    location: PropTypes.object,
   };
+
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      themeIsDark: this.checkTheme(),
+    };
+  }
+  componentDidUpdate() {
+    if (this.state.themeIsDark !== this.checkTheme()) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        themeIsDark: this.checkTheme(),
+      });
+    }
+  }
+
+  checkTheme() {
+    const darkPaths = [
+      '/',
+    ];
+    return darkPaths.every((elem) => (this.props.location.pathname === elem));
+  }
 
   render() {
     return (
@@ -45,7 +69,7 @@ export default class App extends React.PureComponent { // eslint-disable-line re
           ]}
         />
         {/* add dark */}
-        <Header />
+        <Header dark={this.state.themeIsDark} />
         {React.Children.toArray(this.props.children)}
         <Footer />
       </AppWrapper>

@@ -6,9 +6,9 @@ const buttonThemes = {
     borderColor: palette.black,
     textColor: palette.black,
     shadow: 'none',
-    bgColorHover: palette.black,
+    bgColorHover: palette.primary,
     textColorHover: palette.white,
-    borderColorHover: palette.black,
+    borderColorHover: palette.primary,
     shadowHover: 'none',
   },
   white: {
