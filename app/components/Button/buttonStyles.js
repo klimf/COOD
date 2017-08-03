@@ -4,7 +4,7 @@ import { unit } from '../../utils/constants';
 const defaultStyle = css`
   min-width: 150px;
   width: 150px;
-  height: ${3 * unit}px
+  height: ${3 * unit}px;
   display: inline-block;
   box-sizing: border-box;
   padding: ${0.5 * unit}px ${0.5 * unit}px;

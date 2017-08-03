@@ -18,11 +18,17 @@ import styled from 'styled-components';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 
-import { palette } from '../../utils/constants';
+import { palette, unit } from '../../utils/constants';
 
 const AppWrapper = styled.div`
-  min-height: 100%;
+  height: 100%;
   background-color: ${palette.white}
+`;
+
+const PageWrapper = styled.div`
+  display: inline-block;
+  width: 100%;
+  min-height: calc(100% - ${23 * unit}px);
 `;
 
 export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -31,7 +37,6 @@ export default class App extends React.PureComponent { // eslint-disable-line re
     children: PropTypes.node,
     location: PropTypes.object,
   };
-
 
   constructor(props) {
     super(props);
@@ -71,7 +76,9 @@ export default class App extends React.PureComponent { // eslint-disable-line re
         />
         {/* add dark */}
         <Header dark={this.state.themeIsDark} />
-        {React.Children.toArray(this.props.children)}
+        <PageWrapper>
+          {React.Children.toArray(this.props.children)}
+        </PageWrapper>
         <Footer dark={this.state.themeIsDark} />
       </AppWrapper>
     );
