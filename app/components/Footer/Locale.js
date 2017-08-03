@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { palette, unit } from '../../utils/constants';
 
 const Locale = styled.a`
-  color: ${(props) => !props.dark ? palette.black : palette.white}
+  color: ${(props) => props.dark ? palette.white : palette.black};
   cursor: pointer;
   font-size: ${1.2 * unit}px;
   padding-top: ${0.6 * unit}px;

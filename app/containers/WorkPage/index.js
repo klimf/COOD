@@ -9,13 +9,14 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
+import Content from 'components/Content'
 import makeSelectWorkPage from './selectors';
 import messages from './messages';
 
 export class WorkPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div>
+      <Content>
         <Helmet
           title="WorkPage"
           meta={[
@@ -25,7 +26,7 @@ export class WorkPage extends React.PureComponent { // eslint-disable-line react
         <h1>
           <FormattedMessage {...messages.header} />
         </h1>
-      </div>
+      </Content>
     );
   }
 }
