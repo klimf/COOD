@@ -1,13 +1,13 @@
 /*
- * Footer Messages
+ * Header Messages
  *
- * This contains all the text for the Footer component.
+ * This contains all the text for the Header component.
  */
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  header: {
-    id: 'app.components.Footer.header',
-    defaultMessage: 'This is the Footer component !',
+  button: {
+    id: 'app.components.Header.Button',
+    defaultMessage: 'In english',
   },
 });

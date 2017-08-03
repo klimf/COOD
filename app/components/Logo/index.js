@@ -4,7 +4,6 @@ import { palette } from '../../utils/constants';
 
 
 const Logotype = styled.svg`
-  transition: 0.3s ease;
 `;
 
 function Logo(props) {

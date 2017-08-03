@@ -8,6 +8,7 @@
 
 import React, { PropTypes, Children } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { Link } from 'react-router';
 
 import buttonStyles from './buttonStyles';
 import buttonThemes from './buttonThemes';
@@ -16,7 +17,7 @@ import { hideOn } from '../../utils/style-utils';
 
 function Button(props) {
   const A = styled.a`${buttonStyles}`;
-  const StyledButton = styled.button`${buttonStyles}`;
+  const StyledLink = styled(Link)`${buttonStyles}`;
 
   const Wrapper = styled.div`
     text-align: center;
@@ -30,11 +31,11 @@ function Button(props) {
   );
 
   // If the Button has a handleRoute prop, we want to render a button
-  if (props.handleRoute) {
+  if (props.to) {
     button = (
-      <StyledButton onClick={props.handleRoute}>
+      <StyledLink to={props.to}>
         {Children.toArray(props.children)}
-      </StyledButton>
+      </StyledLink>
     );
   }
   return (
@@ -47,7 +48,7 @@ function Button(props) {
 }
 
 Button.propTypes = {
-  handleRoute: PropTypes.func,
+  to: PropTypes.string,
   href: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.node.isRequired,

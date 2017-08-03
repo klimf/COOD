@@ -50,9 +50,10 @@ export default class App extends React.PureComponent { // eslint-disable-line re
 
   checkTheme() {
     const darkPaths = [
-      '/',
+      '/work',
+      '/about',
     ];
-    return darkPaths.every((elem) => (this.props.location.pathname === elem));
+    return darkPaths.some((elem) => (this.props.location.pathname === elem));
   }
 
   render() {
@@ -71,7 +72,7 @@ export default class App extends React.PureComponent { // eslint-disable-line re
         {/* add dark */}
         <Header dark={this.state.themeIsDark} />
         {React.Children.toArray(this.props.children)}
-        <Footer />
+        <Footer dark={this.state.themeIsDark} />
       </AppWrapper>
     );
   }
