@@ -16,6 +16,7 @@ import styled from 'styled-components';
 
 import Content from 'components/Content';
 import Slide from 'components/Slide';
+import Services from 'components/Services';
 
 import messages from './messages';
 import BgShape from './BgShape';
@@ -44,6 +45,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
             <BgShape />
             <Card />
           </CentredWrapper>
+          <Services />
         </Slide>
         <Content>
           <h1>

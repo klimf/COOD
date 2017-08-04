@@ -8,29 +8,29 @@ import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 
-import { palette } from '../../utils/constants';
-import { hideOn } from '../../utils/style-utils';
+import { unit } from '../../utils/constants';
 
 import messages from './messages';
+import Service from './Service';
 
 const Wrapper = styled.div`
+  position: absolute;
+  top: 0;
   display: flex;
-  justify-content: ${(props) => props.expand ? 'space-between' : 'space-around'};
-  align-items: center;
-  margin: 0;
-  padding: 0;
+  justify-content: space-between;
+  align-items: flex-end;
   width: 100%;
-  height: 36px;
-  ${(props) => !props.expand && 'max-width: 400px;'}
-  ${hideOn}
+  padding: 0 ${unit / 3}% ${2.5 * unit}px;
+  height: 100%;
 `;
 
 
 function Services() {
+  // console.log(messages.services[0].icon);
   return (
     <Wrapper>
-      {messages.navigation.map((item, index) => (
-        <Service key={index} to={messages.navigation[index].link}><FormattedMessage {...messages.navigation[index]} /></Service>
+      {messages.services.map((item, index) => (
+        <Service key={index} icon={messages.services[index].icon}><FormattedMessage {...messages.services[index]} /></Service>
       ))}
     </Wrapper>
   );

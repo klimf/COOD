@@ -6,8 +6,26 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  header: {
-    id: 'app.components.Services.header',
-    defaultMessage: 'This is the Services component !',
-  },
+  services: [
+    {
+      id: 'app.components.Services.Item1',
+      defaultMessage: 'Web-sites',
+      icon: 'LaptopIcon',
+    },
+    {
+      id: 'app.components.Services.Item1',
+      defaultMessage: 'Mobile apps',
+      icon: 'PhoneIcon',
+    },
+    {
+      id: 'app.components.Services.Item1',
+      defaultMessage: 'Marketing',
+      icon: 'ChartIcon',
+    },
+    {
+      id: 'app.components.Services.Item1',
+      defaultMessage: 'Concept work',
+      icon: 'IdeaIcon',
+    },
+  ],
 });

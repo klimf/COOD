@@ -1,32 +1,61 @@
-import React, { PropTypes } from 'react';
-import styled from 'styled-components';
+import React, { PropTypes, Children } from 'react';
+import styled, { ThemeProvider } from 'styled-components';
 
-import { unit } from '../../utils/constants';
+import { palette, unit } from '../../utils/constants';
+import LaptopIcon from './LaptopIcon';
+import MobileIcon from './MobileIcon';
+import ChartIcon from './ChartIcon';
+import IdeaIcon from './IdeaIcon';
 
 const Wrapper = styled.div`
-  display: flex;
-  justify-content: 'space-between' : 'space-around';
-  align-items: center;
-  max-width: 64em;
-  margin: 0 auto;
-  padding: 0 ${unit / 3}%;
-  height: 30%;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: ${1.5 * unit}px;
+  font-weight: 300;
 `;
-const Label = styled.label`
-  width: 100%;
-  height: 36px;
-`;
+
+const iconThemes = {
+  light: {
+    main: palette.black,
+    accent: palette.primary,
+    bg: palette.secondary,
+  },
+  dark: {
+    main: palette.white,
+    accent: '#76BCEF',
+    bg: palette.dark,
+  },
+};
+
+function getIcon(name, theme) {
+  switch (name) {
+    case 'LaptopIcon':
+      return <LaptopIcon theme={theme} />;
+    case 'PhoneIcon':
+      return <MobileIcon theme={theme} />;
+    case 'ChartIcon':
+      return <ChartIcon theme={theme} />;
+    case 'IdeaIcon':
+      return <IdeaIcon theme={theme} />;
+    default:
+      return <LaptopIcon theme={theme} />;
+  }
+}
 
 function Service(props) {
   return (
     <Wrapper>
-      <Label>{props.label}</Label>
+      {getIcon(props.icon, props.dark ? iconThemes.dark : iconThemes.light)}
+      <br />
+      {Children.toArray(props.children)}
     </Wrapper>
   );
 }
 
 Service.propTypes = {
-  label: PropTypes.string,
+  dark: PropTypes.bool,
+  icon: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 export default Service;
