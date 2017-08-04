@@ -10,9 +10,8 @@ const Wrapper = styled.div`
   flex-wrap: nowrap;
   justify-content: space-between;
   padding: ${2.5 * unit}px ${unit / 3}%;
-  margin-bottom: -${0 * unit}px;
+  margin-bottom: -${8 * unit}px;
   transition: background-color 0.3s ease;
-  ${media.small}
 `;
 
 export default Wrapper;

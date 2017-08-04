@@ -9,7 +9,8 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
-import Content from 'components/Content'
+import Content from 'components/Content';
+import Space from 'components/Space';
 import makeSelectWorkPage from './selectors';
 import messages from './messages';
 
@@ -23,6 +24,7 @@ export class WorkPage extends React.PureComponent { // eslint-disable-line react
             { name: 'description', content: 'Description of WorkPage' },
           ]}
         />
+        <Space size={8} />
         <h1>
           <FormattedMessage {...messages.header} />
         </h1>

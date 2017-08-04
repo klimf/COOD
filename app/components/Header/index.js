@@ -34,7 +34,7 @@ class Header extends React.PureComponent { // eslint-disable-line react/prefer-s
         <NavList dark={this.props.dark} noSmall>
           {messages.navigation.map((item, index) => (
             <NavItem key={index} to={messages.navigation[index].link}><FormattedMessage {...messages.navigation[index]} /></NavItem>
-            ))}
+          ))}
         </NavList>
         <HideOn small>
           <Button to="/" type={this.props.dark ? 'white' : 'black'}><FormattedMessage {...messages.button} /></Button>
