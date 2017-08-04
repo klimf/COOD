@@ -21,6 +21,7 @@ import Footer from 'components/Footer';
 import { palette, unit } from '../../utils/constants';
 
 const AppWrapper = styled.div`
+  width:100%;
   height: 100%;
   background-color: ${palette.white}
 `;
@@ -28,7 +29,8 @@ const AppWrapper = styled.div`
 const PageWrapper = styled.div`
   display: inline-block;
   width: 100%;
-  min-height: calc(100% - ${23 * unit}px);
+  height: 100%;
+  min-height: calc(100% - ${15 * unit}px);
 `;
 
 export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function

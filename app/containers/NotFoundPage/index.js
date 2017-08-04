@@ -11,6 +11,7 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import Space from 'components/Space';
 import Content from 'components/Content';
 
 import messages from './messages';
@@ -19,6 +20,7 @@ export default class NotFound extends React.PureComponent { // eslint-disable-li
   render() {
     return (
       <Content>
+        <Space size={8} />
         <h1>
           <FormattedMessage {...messages.header} />
         </h1>
