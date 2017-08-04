@@ -6,7 +6,7 @@ const Slide = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: ${palette.white}
+  background-color: ${palette.transparent}
 `;
 
 export default Slide;

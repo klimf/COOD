@@ -27,6 +27,7 @@ const Wrapper = styled.div`
   height: 100%;
 `;
 const CentredWrapper = styled.div`
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,6 +44,8 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
         <Slide>
           <CentredWrapper>
             <BgShape />
+          </CentredWrapper>
+          <CentredWrapper>
             <Card />
           </CentredWrapper>
           <Services />

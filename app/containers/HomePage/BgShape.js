@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import { palette } from '../../utils/constants';
 
 const StyledSvg = styled.svg`
-  position: absolute;
+  margin: 0 auto;
+  min-width: 1362px;
+  width: 1362px;
+  max-width: 1362px;
 `;
 
 function BgShape(props) {

@@ -25,19 +25,18 @@ const Wrapper = styled.div`
 `;
 
 
-function Services() {
-  // console.log(messages.services[0].icon);
+function Services(props) {
   return (
     <Wrapper>
       {messages.services.map((item, index) => (
-        <Service key={index} icon={messages.services[index].icon}><FormattedMessage {...messages.services[index]} /></Service>
+        <Service dark={props.dark} key={index} icon={messages.services[index].icon}><FormattedMessage {...messages.services[index]} /></Service>
       ))}
     </Wrapper>
   );
 }
 
 Services.propTypes = {
-
+  dark: PropTypes.bool,
 };
 
 export default Services;
