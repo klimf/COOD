@@ -26,13 +26,15 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
 `;
+
 const CentredWrapper = styled.div`
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 80%;
+  height: 85%;
+  ${(props) => props.noPointer && 'pointer-events: none;'}
 `;
 
 
@@ -45,7 +47,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
           <CentredWrapper>
             <BgShape />
           </CentredWrapper>
-          <CentredWrapper>
+          <CentredWrapper noPointer >
             <Card />
           </CentredWrapper>
           <Services />

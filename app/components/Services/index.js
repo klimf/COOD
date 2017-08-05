@@ -15,13 +15,12 @@ import Service from './Service';
 
 const Wrapper = styled.div`
   position: absolute;
-  top: 0;
+  bottom: 0;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   width: 100%;
   padding: 0 ${unit / 3}% ${2.5 * unit}px;
-  height: 100%;
 `;
 
 
