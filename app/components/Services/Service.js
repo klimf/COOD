@@ -12,6 +12,14 @@ const Wrapper = styled.div`
   text-transform: uppercase;
   font-size: ${1.5 * unit}px;
   font-weight: 300;
+  cursor: pointer;
+  
+  & svg {
+    transition: 0.3s ease;
+  }
+  &:hover svg {
+    transform: translateY(${-1 * unit}px);
+  }
 `;
 
 const iconThemes = {
