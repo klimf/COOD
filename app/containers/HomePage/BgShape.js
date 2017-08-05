@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { palette } from '../../utils/constants';
 
 function getClasses() {
@@ -7,12 +7,23 @@ function getClasses() {
 
   let string = '';
   for (let i = 0; i < 11; i += 1) {
-    string += `& #Oval-${i + 1} { transition-delay: ${i / 20}s; }`;
+    string += `& #Oval-${i + 1} { transition-delay: ${i / 20}s; animation-delay: ${i / 5}s;}`;
     string += `&.active #Oval-${i + 1} { r: ${rs[i]}; }`;
   }
   return string;
 }
 
+const Animation = keyframes`
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, 10px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+`;
 
 const StyledSvg = styled.svg`
   overflow: visible !important;
@@ -23,6 +34,7 @@ const StyledSvg = styled.svg`
   & circle {
     r: 0;
     transition: 0.5s ease;
+    animation: ${Animation} 3s ease-in-out infinite;
   }
   ${getClasses()}
   
@@ -37,7 +49,6 @@ export default class BgShape extends React.Component {
   }
 
   componentDidMount() {
-    // eslint-disable-next-line react/no-did-mount-set-state,react/no-did-update-set-state
     setTimeout(() => {
       this.setState({
         loaded: true,
