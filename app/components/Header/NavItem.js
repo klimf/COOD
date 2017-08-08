@@ -14,10 +14,6 @@ const NavItem = styled(Link)`
   &:link { color: inherit; }
   &:visited { color: inherit; }
   &:active { color: inherit; }
-  &:hover { 
-    color: ${palette.primary}; 
-    background-color: ${palette.light};
-  }
 `;
 
 export default NavItem;

@@ -18,6 +18,7 @@ import Content from 'components/Content';
 import Slide from 'components/Slide';
 import Services from 'components/Services';
 
+import { palette, unit } from '../../utils/constants';
 import messages from './messages';
 import BgShape from './BgShape';
 import Card from './Card';
@@ -37,6 +38,12 @@ const CentredWrapper = styled.div`
   ${(props) => props.noPointer && 'pointer-events: none;'}
 `;
 
+const BottomWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+`;
+
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -50,13 +57,17 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
           <CentredWrapper noPointer >
             <Card />
           </CentredWrapper>
-          <Services />
+          <BottomWrapper>
+            <Services />
+          </BottomWrapper>
         </Slide>
-        <Content>
-          <h1>
-            <FormattedMessage {...messages.header} />
-          </h1>
-        </Content>
+        <div style={{ display: 'inline-block', backgroundColor: palette.secondary, width: '100%' }}>
+          <Content>
+            <h1>
+              <FormattedMessage {...messages.header} />
+            </h1>
+          </Content>
+        </div>
       </Wrapper>
     );
   }

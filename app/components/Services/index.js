@@ -14,8 +14,6 @@ import messages from './messages';
 import Service from './Service';
 
 const Wrapper = styled.div`
-  position: absolute;
-  bottom: 0;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;

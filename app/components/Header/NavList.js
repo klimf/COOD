@@ -14,6 +14,10 @@ const NavList = styled.div`
   height: 36px;
   color: ${(props) => props.dark ? palette.white : palette.black};
   ${hideOn}
+  & > a:hover { 
+    color: ${(props) => props.dark ? palette.white : palette.primary};; 
+    background-color: ${palette.light};
+  }
 `;
 
 
