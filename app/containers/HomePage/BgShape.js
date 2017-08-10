@@ -56,6 +56,12 @@ const StyledSvg = styled.svg`
   
 `;
 
+const Circle = styled.circle`
+  transition: ${(props) => props.notAnimate ? '0s ease' : '0.5s ease'};
+  transition-delay: ${(props) => props.index / 20}s;
+  animation-delay: ${(props) => props.index / 5}s;
+`;
+
 
 export default class BgShape extends React.Component {
   constructor(props) {
@@ -78,7 +84,13 @@ export default class BgShape extends React.Component {
 
   getCircleStyle(index, notAnimate) {
     return {
-      transition: notAnimate ? '' : '0.5s ease',
+      // WebkitTransition: notAnimate ? '0.5s ease' : '0.5s ease',
+      // WebkitTransitionDelay: `${index / 20}s`,
+      // WebkitAnimationDelay: `${index / 5}s`,
+      // msTransition: notAnimate ? '0.5s ease' : '0.5s ease',
+      // msTransitionDelay: `${index / 20}s`,
+      // msAnimationDelay: `${index / 5}s`,
+      transition: notAnimate ? '0s ease' : '0.5s ease',
       transitionDelay: `${index / 20}s`,
       animationDelay: `${index / 5}s`,
     };
@@ -133,12 +145,12 @@ export default class BgShape extends React.Component {
     // console.log(circlesDefault, this.state.circles);
 
 
-    const cloudDefault = clone(circles.slice(0, 6));
-    let cloud = clone(circles.slice(0, 6));
-    const left = clone(circles.slice(6, 9));
-    const right = clone(circles.slice(9, 11));
-    const cloudLeft = clone(circles.slice(11, 17));
-    let cloudRight = clone(circles.slice(17, 23));
+    const cloudDefault = clone(circlesDefault.slice(0, 6));
+    let cloud = clone(circlesDefault.slice(0, 6));
+    const left = clone(circlesDefault.slice(6, 9));
+    const right = clone(circlesDefault.slice(9, 11));
+    const cloudLeft = clone(circlesDefault.slice(11, 17));
+    let cloudRight = clone(circlesDefault.slice(17, 23));
 
 
     // cloudLeft = fillArrayExId(cloudLeft, cloud);
@@ -153,11 +165,16 @@ export default class BgShape extends React.Component {
       });
       setTimeout(() => {
         this.setState({
-          reset: true,
-          notAnimate: false,
+          notAnimate: true,
           circles: circlesDefault,
         });
-      }, 800);
+      }, 1000);
+      setTimeout(() => {
+        this.setState({
+          reset: true,
+          notAnimate: true,
+        });
+      }, 1200);
     }
 
     // temp = fillArrayExId(cloudLeft, cloudDefault, true);
@@ -175,17 +192,17 @@ export default class BgShape extends React.Component {
 
   render() {
     return (
-      // eslint-disable-next-line react/jsx-no-bind
       <StyledSvg
+        // eslint-disable-next-line react/jsx-no-bind
         onClick={this.handleSvgClick.bind(this)} className={this.state.loaded ? '' : 'notLoaded'}
         width="1362px" height="427px" viewBox="-30 0 1422 427" version="1.1" xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
       >
         <g id="bg-shape" fill={palette[this.props.color ? this.props.color : 'secondary']}>
           {this.state.circles.map((circle, index) => (
-            <circle
-              key={index} id={`Oval-${index}`} className={`Oval-${circle.id}`} cx={circle.cx} cy={circle.cy}
-              r={circle.r} style={this.getCircleStyle(circle.id, this.state.notAnimate)}
+            <Circle
+              key={index} index={circle.id} id={`Oval-${index}`} className={`Oval-${circle.id}`} cx={circle.cx} cy={circle.cy}
+              r={circle.r} notAnimate={this.state.notAnimate}
             />
           ))}
         </g>
