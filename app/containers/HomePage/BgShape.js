@@ -1,6 +1,15 @@
 import React, { PropTypes } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { palette } from '../../utils/constants';
+import circles from './circles';
+
+function clone(array) {
+  return JSON.parse(JSON.stringify(array));
+  // return Object.assign({}, array);
+  // return Array.from(array);
+}
+
+const circlesDefault = clone(circles);
 
 // function getClasses() {
 //   let string = '';
@@ -41,253 +50,20 @@ const StyledSvg = styled.svg`
     r: 0;
   }
   & circle {
-    transition: 0.5s ease;
     animation: ${Animation} 3s ease-in-out infinite;
   }
   
   
 `;
-const circlesAnimated = [
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-  {
-    r: 64,
-    cx: 272,
-    cy: 157,
-  },
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-  {
-    r: 37,
-    cx: 156,
-    cy: 312,
-  },
-  {
-    r: 30,
-    cx: 1331,
-    cy: 305,
-  },
-  {
-    r: 22,
-    cx: 22,
-    cy: 223,
-  },
-  {
-    r: 175,
-    cx: 753,
-    cy: 175,
-  },
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-  {
-    r: 123,
-    cx: 560,
-    cy: 166,
-  },
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-  {
-    r: 141,
-    cx: 765,
-    cy: 285,
-  },
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-  {
-    r: 98,
-    cx: 624,
-    cy: 324,
-  },
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-  {
-    r: 104,
-    cx: 492,
-    cy: 267,
-  },
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-  {
-    r: 94,
-    cx: 900,
-    cy: 259,
-  },
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-];
-const circles = [
-  {
-    r: 175,
-    cx: 753,
-    cy: 175,
-  },
-  {
-    r: 123,
-    cx: 560,
-    cy: 166,
-  },
-  {
-    r: 141,
-    cx: 765,
-    cy: 285,
-  },
-  {
-    r: 98,
-    cx: 624,
-    cy: 324,
-  },
-  {
-    r: 104,
-    cx: 492,
-    cy: 267,
-  },
-  {
-    r: 94,
-    cx: 900,
-    cy: 259,
-  },
-  {
-    r: 64,
-    cx: 272,
-    cy: 157,
-  },
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-  {
-    r: 37,
-    cx: 156,
-    cy: 312,
-  },
-  {
-    r: 30,
-    cx: 1331,
-    cy: 305,
-  },
-  {
-    r: 22,
-    cx: 22,
-    cy: 223,
-  },
-  {
-    r: 64,
-    cx: 272,
-    cy: 157,
-  },
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-  {
-    r: 64,
-    cx: 272,
-    cy: 157,
-  },
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-  {
-    r: 64,
-    cx: 272,
-    cy: 157,
-  },
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-  {
-    r: 64,
-    cx: 272,
-    cy: 157,
-  },
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-  {
-    r: 64,
-    cx: 272,
-    cy: 157,
-  },
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-  {
-    r: 64,
-    cx: 272,
-    cy: 157,
-  },
-  {
-    r: 70,
-    cx: 1156,
-    cy: 173,
-  },
-];
+
 
 export default class BgShape extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      reset: true,
       loaded: false,
-      animationLeft: false,
+      notAnimate: false,
       circles,
     };
   }
@@ -300,38 +76,118 @@ export default class BgShape extends React.Component {
     });
   }
 
-  getCircleStyle(index) {
+  getCircleStyle(index, notAnimate) {
     return {
+      transition: notAnimate ? '' : '0.5s ease',
       transitionDelay: `${index / 20}s`,
       animationDelay: `${index / 5}s`,
     };
   }
 
   handleSvgClick() {
-    this.setState({
-      animationLeft: !this.state.animationLeft,
-      circles: this.state.animationLeft ? circlesAnimated : circles,
-    });
+    function setTemp(array) {
+      return array.map((value) => {
+        const item = value;
+        item.temp = true;
+        return item;
+      });
+    }
+
+    function fillArray(arrDefault, arr2) {
+      const arr1 = clone(arrDefault);
+      for (let i = 0; i < arr1.length; i += 1) {
+        arr1[i].id = arr2[i].id;
+        arr1[i].r = arr2[i].r;
+        arr1[i].cx = arr2[i].cx;
+        arr1[i].cy = arr2[i].cy;
+      }
+      return arr1;
+    }
+
+    function fillArrayExId(arrDefault, arr2, invert) {
+      const arr1 = clone(arrDefault);
+      for (let i = 0; i < arr1.length; i += 1) {
+        if (invert) {
+          arr1[i].id = arr2[i].id;
+        } else {
+          arr1[i].r = arr2[i].r;
+          arr1[i].cx = arr2[i].cx;
+          arr1[i].cy = arr2[i].cy;
+        }
+      }
+      return arr1;
+      // return arr1.map((element, index) => {
+      //   const item = Object.assign(element);
+      //   // item.id = arr2[index].id;
+      //   if (invert) {
+      //     item.id = arr2[index].id;
+      //   } else {
+      //     item.r = arr2[index].r;
+      //     item.cx = arr2[index].cx;
+      //     item.cy = arr2[index].cy;
+      //   }
+      //   // console.log(item);
+      //   return item;
+      // });
+    }
+    // console.log(circlesDefault, this.state.circles);
+
+
+    const cloudDefault = clone(circles.slice(0, 6));
+    let cloud = clone(circles.slice(0, 6));
+    const left = clone(circles.slice(6, 9));
+    const right = clone(circles.slice(9, 11));
+    const cloudLeft = clone(circles.slice(11, 17));
+    let cloudRight = clone(circles.slice(17, 23));
+
+
+    // cloudLeft = fillArrayExId(cloudLeft, cloud);
+    // console.log(cloudLeft);
+    cloudRight = fillArray(cloudRight, cloudDefault);
+    cloud = fillArray(cloud, cloudLeft);
+    if (this.state.reset) {
+      this.setState({
+        reset: false,
+        notAnimate: false,
+        circles: cloud.concat(left, right, cloudLeft, cloudRight),
+      });
+      setTimeout(() => {
+        this.setState({
+          reset: true,
+          notAnimate: false,
+          circles: circlesDefault,
+        });
+      }, 800);
+    }
+
+    // temp = fillArrayExId(cloudLeft, cloudDefault, true);
+    // temp = fillArrayExId(cloudLeft, cloudDefault);
+    // this.setState({
+    //   notAnimate: false,
+    //   circles: cloud.concat(left, right, temp),
+    // });
+
+    // this.setState({
+    //   animationLeft: !this.state.animationLeft,
+    //   circles: this.state.animationLeft ? circlesAnimated : circlesDefault,
+    // });
   }
 
   render() {
     return (
-      <StyledSvg onClick={this.handleSvgClick.bind(this)} style={{ children: { color: '#fac' } }} className={this.state.loaded ? '' : 'notLoaded'} width="1362px" height="427px" viewBox="-30 0 1422 427" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+      // eslint-disable-next-line react/jsx-no-bind
+      <StyledSvg
+        onClick={this.handleSvgClick.bind(this)} className={this.state.loaded ? '' : 'notLoaded'}
+        width="1362px" height="427px" viewBox="-30 0 1422 427" version="1.1" xmlns="http://www.w3.org/2000/svg"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
+      >
         <g id="bg-shape" fill={palette[this.props.color ? this.props.color : 'secondary']}>
           {this.state.circles.map((circle, index) => (
-            <circle key={index} id={`Oval-${index}`} cx={circle.cx} cy={circle.cy} r={circle.r} style={this.getCircleStyle(index)} />
+            <circle
+              key={index} id={`Oval-${index}`} className={`Oval-${circle.id}`} cx={circle.cx} cy={circle.cy}
+              r={circle.r} style={this.getCircleStyle(circle.id, this.state.notAnimate)}
+            />
           ))}
-          {/* <circle id="Oval-1" cx="753" cy="175" r="175" />*/}
-          {/* <circle id="Oval-2" cx="560" cy="166" r="123" />*/}
-          {/* <circle id="Oval-3" cx="765" cy="285" r="141" />*/}
-          {/* <circle id="Oval-4" cx="624" cy="324" r="98" />*/}
-          {/* <circle id="Oval-5" cx="492" cy="267" r="104" />*/}
-          {/* <circle id="Oval-6" cx="900" cy="259" r="94" />*/}
-          {/* <circle id="Oval-7" cx="272" cy="157" r="64" />*/}
-          {/* <circle id="Oval-8" cx="1166" cy="173" r="70" />*/}
-          {/* <circle id="Oval-9" cx="156" cy="312" r="37" />*/}
-          {/* <circle id="Oval-10" cx="1331" cy="305" r="30" />*/}
-          {/* <circle id="Oval-11" cx="22" cy="223" r="22" />*/}
         </g>
       </StyledSvg>
     );
