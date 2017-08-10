@@ -59,7 +59,7 @@ const StyledSvg = styled.svg`
 const Circle = styled.circle`
   transition: ${(props) => props.notAnimate ? '0s ease' : '0.5s ease'};
   transition-delay: ${(props) => props.index / 20}s;
-  animation-delay: ${(props) => props.index / 5}s;
+  animation-delay: ${(props) => props.index / 5}s !important;
 `;
 
 
@@ -82,81 +82,39 @@ export default class BgShape extends React.Component {
     });
   }
 
-  getCircleStyle(index, notAnimate) {
-    return {
-      // WebkitTransition: notAnimate ? '0.5s ease' : '0.5s ease',
-      // WebkitTransitionDelay: `${index / 20}s`,
-      // WebkitAnimationDelay: `${index / 5}s`,
-      // msTransition: notAnimate ? '0.5s ease' : '0.5s ease',
-      // msTransitionDelay: `${index / 20}s`,
-      // msAnimationDelay: `${index / 5}s`,
-      transition: notAnimate ? '0s ease' : '0.5s ease',
-      transitionDelay: `${index / 20}s`,
-      animationDelay: `${index / 5}s`,
-    };
-  }
-
-  handleSvgClick() {
-    function setTemp(array) {
-      return array.map((value) => {
-        const item = value;
-        item.temp = true;
-        return item;
-      });
-    }
-
-    function fillArray(arrDefault, arr2) {
+  handleSvgClick(isRight) {
+    function setTempRadius(arrDefault) {
       const arr1 = clone(arrDefault);
       for (let i = 0; i < arr1.length; i += 1) {
-        arr1[i].id = arr2[i].id;
-        arr1[i].r = arr2[i].r;
-        arr1[i].cx = arr2[i].cx;
-        arr1[i].cy = arr2[i].cy;
+        arr1[i].r = 0;
       }
       return arr1;
     }
-
-    function fillArrayExId(arrDefault, arr2, invert) {
+    function incId(arrDefault) {
       const arr1 = clone(arrDefault);
       for (let i = 0; i < arr1.length; i += 1) {
-        if (invert) {
-          arr1[i].id = arr2[i].id;
-        } else {
-          arr1[i].r = arr2[i].r;
-          arr1[i].cx = arr2[i].cx;
-          arr1[i].cy = arr2[i].cy;
-        }
+        arr1[i].id += 15;
       }
       return arr1;
-      // return arr1.map((element, index) => {
-      //   const item = Object.assign(element);
-      //   // item.id = arr2[index].id;
-      //   if (invert) {
-      //     item.id = arr2[index].id;
-      //   } else {
-      //     item.r = arr2[index].r;
-      //     item.cx = arr2[index].cx;
-      //     item.cy = arr2[index].cy;
-      //   }
-      //   // console.log(item);
-      //   return item;
-      // });
     }
-    // console.log(circlesDefault, this.state.circles);
-
 
     const cloudDefault = clone(circlesDefault.slice(0, 6));
-    let cloud = clone(circlesDefault.slice(0, 6));
     const left = clone(circlesDefault.slice(6, 9));
     const right = clone(circlesDefault.slice(9, 11));
-    const cloudLeft = clone(circlesDefault.slice(11, 17));
+    let cloud = clone(circlesDefault.slice(0, 6));
+    let cloudLeft = clone(circlesDefault.slice(11, 17));
     let cloudRight = clone(circlesDefault.slice(17, 23));
 
+    if (isRight) {
+      cloudLeft = clone(cloudDefault);
+      cloudLeft = incId(cloudLeft);
+      cloud = clone(cloudRight);
+    } else {
+      cloudRight = clone(cloudDefault);
+      cloudRight = incId(cloudRight);
+      cloud = clone(cloudLeft);
+    }
 
-    // cloudLeft = fillArrayExId(cloudLeft, cloud);
-    // console.log(cloudLeft);
-    cloudRight = fillArray(cloudRight, cloudDefault);
-    cloud = fillArray(cloud, cloudLeft);
     if (this.state.reset) {
       this.setState({
         reset: false,
@@ -168,26 +126,14 @@ export default class BgShape extends React.Component {
           notAnimate: true,
           circles: circlesDefault,
         });
-      }, 1000);
+      }, 1500);
       setTimeout(() => {
         this.setState({
           reset: true,
           notAnimate: true,
         });
-      }, 1200);
+      }, 1800);
     }
-
-    // temp = fillArrayExId(cloudLeft, cloudDefault, true);
-    // temp = fillArrayExId(cloudLeft, cloudDefault);
-    // this.setState({
-    //   notAnimate: false,
-    //   circles: cloud.concat(left, right, temp),
-    // });
-
-    // this.setState({
-    //   animationLeft: !this.state.animationLeft,
-    //   circles: this.state.animationLeft ? circlesAnimated : circlesDefault,
-    // });
   }
 
   render() {
